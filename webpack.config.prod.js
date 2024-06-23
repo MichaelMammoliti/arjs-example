@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     app: "./src/index.tsx",
   },
-  mode: "development",
+  mode: "production",
   module: {
     rules: [
       {
@@ -94,10 +94,13 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "dist/",
     pathinfo: false,
+    clean: true,
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
   },
   plugins: [
     new DefinePlugin({
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      NODE_ENV: JSON.stringify("production"),
     }),
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
