@@ -32,7 +32,15 @@ module.exports = {
       },
       {
         test: /\.gltf$/i,
-        use: ["url-loader"],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              publicPath: './',
+              name: '[name].[ext]'
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/i,

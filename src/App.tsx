@@ -4,6 +4,8 @@ import "./styles.css";
 
 import model from "./model.gltf";
 
+console.log(model);
+
 export const App = () => (
   <div
     dangerouslySetInnerHTML={{
@@ -16,6 +18,7 @@ export const App = () => (
               gltf-model="${model}"
             ></a-entity>
           </a-marker>
+          <a-entity camera></a-entity>
         </a-scene>
       `,
     }}
