@@ -75,10 +75,16 @@ module.exports = {
   },
   stats: "errors-only",
   devServer: {
-    static: "./src",
+    static: {
+      directory: path.resolve(__dirname, './public'), 
+      publicPath: '/public'
+    },
     compress: true,
     port: 3000,
     hot: true,
+    server: {
+      type: 'https',
+    },
     client: {
       overlay: {
         warnings: false,

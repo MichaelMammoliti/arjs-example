@@ -8,3 +8,6 @@ declare module "*.gltf" {
   const content: string;
   export default content;
 }
+
+// declare global variable three
+declare var THREEx: any;

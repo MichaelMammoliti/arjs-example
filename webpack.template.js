@@ -2,13 +2,28 @@ module.exports = `
   <!DOCTYPE html>
   <html lang="en">
     <head>
+      <title>App</title>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>App</title>
+    	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
       
-      <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-      <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
+      <!-- 
+        <script src="public/lib/aframe.min.js"></script>
+        <script src="public/lib/aframe-ar.js"></script>
+      -->
+
+      <!-- include three.js library -->
+      <script src='public/lib/js/three.js'></script>
+
+      <!-- include jsartookit -->
+      <script src="public/lib/jsartoolkit5/artoolkit.min.js"></script>
+      <script src="public/lib/jsartoolkit5/artoolkit.api.js"></script>
+
+      <!-- include threex.artoolkit -->
+      <script src="public/lib/threex/threex-artoolkitsource.js"></script>
+      <script src="public/lib/threex/threex-artoolkitcontext.js"></script>
+      <script src="public/lib/threex/threex-arbasecontrols.js"></script>
+      <script src="public/lib/threex/threex-armarkercontrols.js"></script>
     </head>
     <body>
       <div id="app"></div>
