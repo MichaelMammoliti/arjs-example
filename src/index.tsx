@@ -11,7 +11,6 @@ type Planet = {
   name: string;
   size: number;
   texturePath: string;
-  distance: number;
   texture: THREE.Texture;
 };
 
@@ -106,63 +105,54 @@ const planetDetails: PlanetUnloaded[] = [
     size: 0.8,
     texturePath: 'public/images/sun-sphere.jpg',
     texture: undefined,
-    distance: 0,
   },
   {
     name: 'mercury',
     size: 0.8,
     texturePath: 'public/images/mercury-sphere.jpg',
     texture: undefined,
-    distance: 0.4,
   },
   {
     name: 'venus',
     size: 0.8,
     texturePath: 'public/images/venus-sphere.jpg',
     texture: undefined,
-    distance: 0.7,
   },
   {
     name: 'earth',
     size: 0.8,
     texturePath: 'public/images/earth-sphere.jpg',
     texture: undefined,
-    distance: 1,
   },
   {
     name: 'mars',
     size: 0.8,
     texturePath: 'public/images/mars-sphere.jpg',
     texture: undefined,
-    distance: 1.5,
   },
   {
     name: 'jupiter',
     size: 0.8,
     texturePath: 'public/images/jupiter-sphere.jpg',
     texture: undefined,
-    distance: 2.2,
   },
   {
     name: 'saturn',
     size: 0.8,
     texturePath: 'public/images/saturn-sphere.jpg',
     texture: undefined,
-    distance: 3.7,
   },
   {
     name: 'uranus',
     size: 0.8,
     texturePath: 'public/images/uranus-sphere.jpg',
     texture: undefined,
-    distance: 5.9,
   },
   {
     name: 'neptune',
     size: 0.8,
     texturePath: 'public/images/neptune-sphere.jpg',
     texture: undefined,
-    distance: 7.2,
   },
   // public/images/saturn-ring.png
 ];
@@ -205,10 +195,10 @@ const fn = async () => {
 
   const arToolkitSource: any = new THREEx.ArToolkitSource({
     sourceType: 'webcam',
-    sourceWidth: 1280,
-    sourceHeight: 960,
-    displayWidth: 1280,
-    displayHeight: 960,
+    sourceWidth: window.screen.width * window.screen.pixelDepth,
+    sourceHeight: window.screen.height * window.screen.pixelDepth,
+    displayWidth: window.screen.width * window.screen.pixelDepth,
+    displayHeight: window.screen.height * window.screen.pixelDepth,
   });
 
   // Set up renderer
@@ -275,6 +265,7 @@ const fn = async () => {
       height,
       backgroundColor: new THREE.Color(backgroundColor),
       backgroundOpacity,
+      borderRadius: 0.1,
     });
 
     block.add(
@@ -298,6 +289,7 @@ const fn = async () => {
       padding: 0.25,
       backgroundColor: new THREE.Color('white'),
       backgroundOpacity: 0.5,
+      borderRadius: 0.1,
     });
 
     const Title = Button({
@@ -312,12 +304,16 @@ const fn = async () => {
       backgroundColor: '#ffffff',
       width: 1,
       height: 1,
+      backgroundOpacity: 0.5,
+      color: '#eeeeee',
     });
     PlusButton.position.x = 0.75;
 
     const MinusButton = Button({
       content: '-',
-      backgroundColor: 'red',
+      backgroundColor: '#fafafa',
+      backgroundOpacity: 0.5,
+      color: '#eeeeee',
       width: 1,
       height: 1,
     });
@@ -373,7 +369,7 @@ const fn = async () => {
 
     const markerA = new THREEx.ArMarkerControls(arToolkitContext, markerRootA, {
       type: 'pattern',
-      patternUrl: 'public/data/letterA.patt',
+      patternUrl: 'public/data/go.patt',
     });
 
     const markerB = new THREEx.ArMarkerControls(arToolkitContext, markerRootB, {
@@ -403,15 +399,15 @@ const fn = async () => {
     trumpScene.position.z = 0.5;
 
     const panel1 = ProductPanel({
-      title: 'Earth',
+      title: 'Sun',
       child: earth,
     });
 
     panel1.rotation.x = -Math.PI / 2;
-    panel1.position.z = 0;
-    panel1.scale.x = 1.5;
-    panel1.scale.y = 1.5;
-    panel1.scale.z = 1.5;
+    panel1.position.z = -1;
+    panel1.scale.x = 1.2;
+    panel1.scale.y = 1.2;
+    panel1.scale.z = 1.2;
 
     markerRootA.add(panel1);
     markerRootB.add(sun);
@@ -465,8 +461,8 @@ const fn = async () => {
       ThreeMeshUI.update();
 
       if (markerRootA.visible) {
-        animatePlanet(earth);
-        trumpModelHandler.update(deltaTime);
+        animatePlanet(sun);
+        // trumpModelHandler.update(deltaTime);
         // trumpModel.scene.position.y += 0.02;
       }
 
