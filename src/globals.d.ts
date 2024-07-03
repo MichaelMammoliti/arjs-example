@@ -15,3 +15,6 @@ declare module 'three/addons/loaders/GLTFLoader.js' {
 
 // declare global variable three
 declare var THREEx: any;
+
+declare var totalTime: number;
+declare var deltaTime: number;

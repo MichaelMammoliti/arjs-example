@@ -1,11 +1,4 @@
 import * as THREE from 'three';
+import { PlanetProps } from './components/types';
 
-export type Planet = {
-  name: string;
-  size: number;
-  texturePath: string;
-  distance: number;
-  texture: THREE.Texture;
-};
-
-export type PlanetUnloaded = Planet & { texture: undefined };
+export type PlanetUnloaded = PlanetProps & { texture: undefined };
