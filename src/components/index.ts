@@ -1,109 +1,109 @@
-import ThreeMeshUI from 'three-mesh-ui';
+// import ThreeMeshUI from 'three-mesh-ui';
 import * as THREE from 'three';
 import { ButtonProps, PlanetProps, ProductPanelProps } from './types';
 import { GLTFhandler, loadGLTF } from '../utilities';
 
-export const Text = (props: ThreeMeshUI.TextOptions) => {
-  return new ThreeMeshUI.Text({
-    ...props,
-    fontFamily: 'public/fonts/Roboto-msdf.json',
-    fontTexture: 'public/fonts/Roboto-msdf.png',
-  });
-};
+// export const Text = (props: ThreeMeshUI.TextOptions) => {
+//   return new ThreeMeshUI.Text({
+//     ...props,
+//     fontFamily: 'public/fonts/Roboto-msdf.json',
+//     fontTexture: 'public/fonts/Roboto-msdf.png',
+//   });
+// };
 
-export const Button = ({
-  content,
-  backgroundColor = 'white',
-  backgroundOpacity = 0,
-  width = 0,
-  height = 0,
-  fontSize = 1,
-  color = 'black',
-}: ButtonProps) => {
-  const block = new ThreeMeshUI.Block({
-    width,
-    height,
-    backgroundColor: new THREE.Color(backgroundColor),
-    backgroundOpacity,
-    borderRadius: 0.1,
-  });
+// export const Button = ({
+//   content,
+//   backgroundColor = 'white',
+//   backgroundOpacity = 0,
+//   width = 0,
+//   height = 0,
+//   fontSize = 1,
+//   color = 'black',
+// }: ButtonProps) => {
+//   const block = new ThreeMeshUI.Block({
+//     width,
+//     height,
+//     backgroundColor: new THREE.Color(backgroundColor),
+//     backgroundOpacity,
+//     borderRadius: 0.1,
+//   });
 
-  block.add(
-    Text({
-      content,
-      width: 0.5,
-      height: 0.5,
-      padding: 0,
-      fontSize,
-      color,
-    }),
-  );
+//   block.add(
+//     Text({
+//       content,
+//       width: 0.5,
+//       height: 0.5,
+//       padding: 0,
+//       fontSize,
+//       color,
+//     }),
+//   );
 
-  return block;
-};
+//   return block;
+// };
 
-export const ProductPanel = ({ title, child }: ProductPanelProps) => {
-  const Wrapper = new ThreeMeshUI.Block({
-    width: 3,
-    height: 4,
-    padding: 0.25,
-    backgroundColor: new THREE.Color('white'),
-    backgroundOpacity: 0.5,
-    borderRadius: 0.1,
-  });
+// export const ProductPanel = ({ title, child }: ProductPanelProps) => {
+//   const Wrapper = new ThreeMeshUI.Block({
+//     width: 3,
+//     height: 4,
+//     padding: 0.25,
+//     backgroundColor: new THREE.Color('white'),
+//     backgroundOpacity: 0.5,
+//     borderRadius: 0.1,
+//   });
 
-  const Title = Button({
-    content: title,
-    width: 3,
-    height: 1,
-    backgroundOpacity: 0,
-  });
+//   const Title = Button({
+//     content: title,
+//     width: 3,
+//     height: 1,
+//     backgroundOpacity: 0,
+//   });
 
-  const PlusButton = Button({
-    content: '+',
-    backgroundColor: '#ffffff',
-    width: 1,
-    height: 1,
-    backgroundOpacity: 0.5,
-    color: '#eeeeee',
-  });
-  PlusButton.position.x = 0.75;
+//   const PlusButton = Button({
+//     content: '+',
+//     backgroundColor: '#ffffff',
+//     width: 1,
+//     height: 1,
+//     backgroundOpacity: 0.5,
+//     color: '#eeeeee',
+//   });
+//   PlusButton.position.x = 0.75;
 
-  const MinusButton = Button({
-    content: '-',
-    backgroundColor: '#fafafa',
-    backgroundOpacity: 0.5,
-    color: '#eeeeee',
-    width: 1,
-    height: 1,
-  });
-  MinusButton.position.x = -0.75;
+//   const MinusButton = Button({
+//     content: '-',
+//     backgroundColor: '#fafafa',
+//     backgroundOpacity: 0.5,
+//     color: '#eeeeee',
+//     width: 1,
+//     height: 1,
+//   });
+//   MinusButton.position.x = -0.75;
 
-  const Header = new THREE.Group();
-  Header.add(Title);
-  Header.position.y = 2;
-  Header.position.z = 0.5;
+//   const Header = new THREE.Group();
+//   Header.add(Title);
+//   Header.position.y = 2;
+//   Header.position.z = 0.5;
 
-  const Body = new THREE.Group();
-  Body.add(child);
-  Body.position.y = Header.position.y - 1.5;
-  Body.position.z = 0.5;
+//   const Body = new THREE.Group();
+//   Body.add(child);
+//   Body.position.y = Header.position.y - 1.5;
+//   Body.position.z = 0.5;
 
-  const Footer = new THREE.Group();
-  Footer.add(PlusButton, MinusButton);
-  Footer.position.y = Body.position.y - 1.5;
-  Footer.position.z = 0.5;
+//   const Footer = new THREE.Group();
+//   Footer.add(PlusButton, MinusButton);
+//   Footer.position.y = Body.position.y - 1.5;
+//   Footer.position.z = 0.5;
 
-  Wrapper.add(Header, Body, Footer);
+//   Wrapper.add(Header, Body, Footer);
 
-  Wrapper.rotation.x = -Math.PI / 2;
-  Wrapper.position.z = 1;
-  Wrapper.scale.x = 1;
-  Wrapper.scale.y = 1;
-  Wrapper.scale.z = 1;
+//   Wrapper.rotation.x = -Math.PI / 2;
+//   Wrapper.position.z = 1;
+//   Wrapper.scale.x = 1;
+//   Wrapper.scale.y = 1;
+//   Wrapper.scale.z = 1;
 
-  return Wrapper;
-};
+//   return Wrapper;
+// };
 
 export const PointLight = () => {
   const pointLight = new THREE.PointLight(0xffffff, 1, 100);

@@ -24,6 +24,15 @@ module.exports = `
       <script src="public/lib/threex/threex-artoolkitcontext.js"></script>
       <script src="public/lib/threex/threex-arbasecontrols.js"></script>
       <script src="public/lib/threex/threex-armarkercontrols.js"></script>
+      <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+            "mindar-face-three":"https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-three.prod.js"
+          }
+        }
+      </script>
     </head>
     <body>
       <div id="app"></div>

@@ -13,6 +13,18 @@ declare module 'three/addons/loaders/GLTFLoader.js' {
   export const GLTFLoader: any;
 }
 
+declare module 'three/src/loaders/GLTFLoader.js' {
+  export const GLTFLoader: any;
+}
+
+declare module 'three/examples/js/loaders/GLTFLoader.js' {
+  export const GLTFLoader: any;
+}
+
+declare module 'mind-ar/dist/mindar-image-three.prod.js' {
+  export const MindARThree: any;
+}
+
 // declare global variable three
 declare var THREEx: any;
 

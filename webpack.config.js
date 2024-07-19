@@ -102,6 +102,17 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    // fallback: { util: false },
+    alias: {
+      'three/addons/renderers': path.resolve(
+        __dirname,
+        'node_modules/three/examples/js/renderers',
+      ),
+      'three/addons/renderers/**/*': path.resolve(
+        __dirname,
+        'node_modules/three/examples/js/renderers/**/*',
+      ),
+    },
   },
   output: {
     filename: 'bundle.js',

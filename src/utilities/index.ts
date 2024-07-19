@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
 import { CSSProperties } from 'react';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/examples/js/loaders/GLTFLoader.js';
 import { planetDetails } from './constants';
 import { PlanetProps } from '../components/types';
 
