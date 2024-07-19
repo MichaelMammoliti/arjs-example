@@ -24,6 +24,9 @@ declare module 'three/examples/js/loaders/GLTFLoader.js' {
 declare module 'mind-ar/dist/mindar-image-three.prod.js' {
   export const MindARThree: any;
 }
+declare module 'mind-ar' {
+  export const MindARThree: any;
+}
 
 // declare global variable three
 declare var THREEx: any;

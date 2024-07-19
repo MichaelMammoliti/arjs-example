@@ -104,13 +104,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     // fallback: { util: false },
     alias: {
-      'three/addons/renderers': path.resolve(
+      'three/addons/renderers/CSS3DRenderer.js': path.resolve(
         __dirname,
-        'node_modules/three/examples/js/renderers',
-      ),
-      'three/addons/renderers/**/*': path.resolve(
-        __dirname,
-        'node_modules/three/examples/js/renderers/**/*',
+        'node_modules/three/examples/jsm/renderers/CSS3DRenderer.js',
       ),
     },
   },
