@@ -28,3 +28,5 @@ export type PlanetProps = {
   texturePath: string;
   texture: THREE.Texture;
 };
+
+export type PlanetUnloaded = PlanetProps & { texture: undefined };

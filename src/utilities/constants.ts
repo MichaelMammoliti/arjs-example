@@ -1,4 +1,4 @@
-import { PlanetUnloaded } from '../types';
+import { PlanetUnloaded } from '../components/types';
 
 export const planetDetails: PlanetUnloaded[] = [
   {
