@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { MindARThree } from 'mind-ar/dist/mindar-image-three.prod.js';
 import { Model } from '../components';
+import { degrees, inlineStyle } from '../utilities';
 
 const mindarThree = new MindARThree({
   container: document.querySelector('#app'),
@@ -8,18 +9,6 @@ const mindarThree = new MindARThree({
   filterMinCF: 10,
   filterBeta: 10,
 });
-
-const kebabCase = (str: string) => {
-  return str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
-};
-
-const inlineStyle = (obj: any) => {
-  let style = '';
-  for (const key in obj) {
-    style += `${kebabCase(key)}: ${obj[key]};`;
-  }
-  return style;
-};
 
 const button = document.createElement('button');
 button.setAttribute(
@@ -49,7 +38,6 @@ button.appendChild(span);
 document.body.appendChild(button);
 
 const { renderer, scene, camera } = mindarThree;
-const degrees = (deg: number) => Math.PI * (deg / 180);
 
 const lightgroup = new THREE.Group();
 const light = new THREE.DirectionalLight(0xffffff, 1);

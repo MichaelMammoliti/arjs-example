@@ -91,4 +91,16 @@ export const GLTFhandler = (model: any) => {
 export const betweenInt = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
-const stack: Function[] = [];
+export const kebabCase = (str: string) => {
+  return str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+};
+
+export const inlineStyle = (obj: any) => {
+  let style = '';
+  for (const key in obj) {
+    style += `${kebabCase(key)}: ${obj[key]};`;
+  }
+  return style;
+};
+
+export const degrees = (deg: number) => Math.PI * (deg / 180);

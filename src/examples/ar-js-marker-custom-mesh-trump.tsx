@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 import { Trump } from '../components';
+import { degrees } from '../utilities';
 
 window.totalTime = 0;
 window.deltaTime = 0;
@@ -18,10 +19,10 @@ const fn = async () => {
 
   const arToolkitSource: any = new THREEx.ArToolkitSource({
     sourceType: 'webcam',
-    sourceWidth: window.screen.width * window.screen.pixelDepth,
-    sourceHeight: window.screen.height * window.screen.pixelDepth,
-    displayWidth: window.screen.width * window.screen.pixelDepth,
-    displayHeight: window.screen.height * window.screen.pixelDepth,
+    sourceWidth: window.screen.width,
+    sourceHeight: window.screen.height,
+    displayWidth: window.screen.width,
+    displayHeight: window.screen.height,
   });
 
   // Set up renderer
@@ -50,12 +51,29 @@ const fn = async () => {
 
     // we create a parent for each marker so we can rotate the entire group
     const wrapperA = new THREE.Group();
-    wrapperA.rotation.x = -Math.PI / 2;
+
+    const floor = new THREE.Mesh(
+      new THREE.BoxGeometry(2, 0.1, 2),
+      new THREE.MeshStandardMaterial(),
+    );
+
+    // floor.rotation.x = degrees(90);
+    floor.position.y = -0.005;
+    wrapperA.add(floor);
 
     const trump = Trump();
+
+    trump.load();
+
     trump.onLoad((model) => {
       wrapperA.add(model.scene);
+
+      model.scene.scale.set(0.01, 0.01, 0.01);
+      model.scene.position.y = 0;
     });
+
+    wrapperA.rotation.x = degrees(-90);
+    wrapperA.rotation.y = degrees(45);
 
     // we then add the meshes to the scene
     markerRootA.add(wrapperA);

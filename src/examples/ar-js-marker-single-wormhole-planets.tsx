@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { loadTextures } from '../utilities';
+import { between, loadTextures } from '../utilities';
 import { Planet } from '../components';
 
 window.totalTime = 0;
@@ -64,7 +64,7 @@ const fn = async () => {
       }),
     );
 
-    plane.scale.set(2, 2, 2);
+    plane.scale.set(3, 3, 3);
     earth.mesh.position.z = 0;
 
     const worldsGroup = new THREE.Group();

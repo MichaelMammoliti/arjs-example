@@ -227,13 +227,5 @@ export const Model = (path: string) => {
 export const Trump = () => {
   const modelObject = Model('public/models/trump/scene.gltf');
 
-  modelObject.animate((model) => {
-    const scene = model.scene;
-
-    scene.scale.set(0.01, 0.01, 0.01);
-    scene.rotation.x = -Math.PI / 2;
-    scene.position.z = 0.5;
-  });
-
   return modelObject;
 };
