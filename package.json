@@ -10,7 +10,11 @@
     "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Mammoliti",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelMammoliti/arjs-example.git"
+  },
   "license": "ISC",
   "dependencies": {
     "@react-three/fiber": "^8.16.8",
