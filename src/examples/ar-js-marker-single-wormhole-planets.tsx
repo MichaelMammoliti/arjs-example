@@ -1,25 +1,16 @@
 import * as THREE from 'three';
-
-import { loadTextures } from './utilities';
-import { Planet } from './components';
+import { loadTextures } from '../utilities';
+import { Planet } from '../components';
 
 window.totalTime = 0;
 window.deltaTime = 0;
 
-const between = (min: number, max: number) => Math.random() * (max - min) + min;
-
-const betweenInt = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
 const fn = async () => {
-  // Set up renderer
   const clock = new THREE.Clock();
   const scene = new THREE.Scene();
   const camera = new THREE.Camera();
-  const renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true,
-  });
+
+  // setup arjs
   const arToolkitContext: any = new THREEx.ArToolkitContext({
     cameraParametersUrl: 'public/data/camera_para.dat',
     detectionMode: 'mono',
@@ -27,13 +18,17 @@ const fn = async () => {
 
   const arToolkitSource: any = new THREEx.ArToolkitSource({
     sourceType: 'webcam',
-    sourceWidth: window.screen.width * window.screen.pixelDepth,
-    sourceHeight: window.screen.height * window.screen.pixelDepth,
-    // displayWidth: window.screen.width * window.screen.pixelDepth,
-    // displayHeight: window.screen.height * window.screen.pixelDepth,
+    sourceWidth: window.screen.width,
+    sourceHeight: window.screen.height,
+    displayWidth: window.screen.width,
+    displayHeight: window.screen.height,
   });
 
   // Set up renderer
+  const renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    alpha: true,
+  });
   renderer.setClearColor(new THREE.Color('lightgrey'), 0);
   renderer.setSize(window.screen.width, window.screen.height);
   renderer.domElement.style.position = 'absolute';

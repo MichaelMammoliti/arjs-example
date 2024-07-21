@@ -88,4 +88,7 @@ export const GLTFhandler = (model: any) => {
   };
 };
 
+export const betweenInt = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
 const stack: Function[] = [];

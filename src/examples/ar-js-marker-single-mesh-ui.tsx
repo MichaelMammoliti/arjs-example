@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 import ThreeMeshUI from 'three-mesh-ui';
-import { GLTFhandler, loadGLTF, loadTextures } from './utilities';
-import { Planet, ProductPanel } from './components';
+import { loadTextures } from '../utilities';
+import { Planet, ProductPanel } from '../components';
 
 window.totalTime = 0;
 window.deltaTime = 0;
@@ -10,7 +10,6 @@ window.deltaTime = 0;
 const fn = async () => {
   const clock = new THREE.Clock();
   const scene = new THREE.Scene();
-  const ambientLight = new THREE.AmbientLight(0xcccccc, 0.5);
   const camera = new THREE.Camera();
   const renderer = new THREE.WebGLRenderer({
     antialias: true,

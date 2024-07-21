@@ -1,20 +1,16 @@
 import * as THREE from 'three';
 
-import { loadTextures } from './utilities';
-import { Planet } from './components';
+import { Trump } from '../components';
 
 window.totalTime = 0;
 window.deltaTime = 0;
 
 const fn = async () => {
-  // Set up renderer
   const clock = new THREE.Clock();
   const scene = new THREE.Scene();
   const camera = new THREE.Camera();
-  const renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    alpha: false,
-  });
+
+  // Set up AR.js
   const arToolkitContext: any = new THREEx.ArToolkitContext({
     cameraParametersUrl: 'public/data/camera_para.dat',
     detectionMode: 'mono',
@@ -29,6 +25,10 @@ const fn = async () => {
   });
 
   // Set up renderer
+  const renderer = new THREE.WebGLRenderer({
+    antialias: false,
+    alpha: false,
+  });
   renderer.setClearColor(new THREE.Color('lightgrey'), 0);
   renderer.setSize(window.outerWidth, window.outerHeight);
   renderer.domElement.style.position = 'absolute';
@@ -36,9 +36,9 @@ const fn = async () => {
   renderer.domElement.style.left = '0px';
   document.body.appendChild(renderer.domElement);
 
+  const light = new THREE.AmbientLight(0xffffff);
+
   const init = async () => {
-    // wait for all textures to load
-    const textures = await loadTextures();
     // we create wrapper groups for each marker
     const markerRootA = new THREE.Group();
 
@@ -48,17 +48,19 @@ const fn = async () => {
       patternUrl: 'public/data/hiro.patt',
     });
 
-    // we create meshes
-    const earth = Planet(textures[3]);
-
     // we create a parent for each marker so we can rotate the entire group
     const wrapperA = new THREE.Group();
     wrapperA.rotation.x = -Math.PI / 2;
 
+    const trump = Trump();
+    trump.onLoad((model) => {
+      wrapperA.add(model.scene);
+    });
+
     // we then add the meshes to the scene
-    wrapperA.add(earth.mesh);
     markerRootA.add(wrapperA);
     scene.add(markerRootA);
+    scene.add(light);
 
     // render
     const animate = () => {
@@ -70,7 +72,7 @@ const fn = async () => {
       // the render function is defined in the Planet component
       // and takes care of rotating the planet
       if (markerRootA.visible) {
-        earth.render();
+        trump.render();
       }
 
       if (arToolkitSource.ready !== false) {

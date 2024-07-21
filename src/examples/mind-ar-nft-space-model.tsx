@@ -49,13 +49,7 @@ const SpaceMan = () => {
 
 const start = async () => {
   try {
-    // const textures = await loadTextures();
-
-    // const planets = textures.map((props) => Planet(props));
-    // const earth = planets[3];
-
     const spaceMan = SpaceMan();
-
     const spaceManModel = await spaceMan.load();
 
     anchor.group.add(spaceManModel.scene);

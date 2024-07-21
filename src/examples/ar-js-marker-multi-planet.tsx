@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 
-import { loadTextures } from './utilities';
-import { Planet } from './components';
+import { loadTextures } from '../utilities';
+import { Planet } from '../components';
 
 window.totalTime = 0;
 window.deltaTime = 0;

@@ -1,7 +1,6 @@
 import * as THREE from 'three';
-
-import { loadTextures } from './utilities';
-import { Planet, Trump } from './components';
+import { loadTextures } from '../utilities';
+import { Planet } from '../components';
 
 window.totalTime = 0;
 window.deltaTime = 0;
@@ -11,7 +10,6 @@ const fn = async () => {
   const clock = new THREE.Clock();
   const scene = new THREE.Scene();
   const camera = new THREE.Camera();
-  var light = new THREE.AmbientLight(0xffffff);
   const renderer = new THREE.WebGLRenderer({
     antialias: false,
     alpha: false,
@@ -38,6 +36,8 @@ const fn = async () => {
   document.body.appendChild(renderer.domElement);
 
   const init = async () => {
+    // wait for all textures to load
+    const textures = await loadTextures();
     // we create wrapper groups for each marker
     const markerRootA = new THREE.Group();
 
@@ -47,16 +47,17 @@ const fn = async () => {
       patternUrl: 'public/data/hiro.patt',
     });
 
+    // we create meshes
+    const earth = Planet(textures[3]);
+
     // we create a parent for each marker so we can rotate the entire group
     const wrapperA = new THREE.Group();
     wrapperA.rotation.x = -Math.PI / 2;
 
-    const trump = Trump(wrapperA);
-
     // we then add the meshes to the scene
+    wrapperA.add(earth.mesh);
     markerRootA.add(wrapperA);
     scene.add(markerRootA);
-    scene.add(light);
 
     // render
     const animate = () => {
@@ -68,7 +69,7 @@ const fn = async () => {
       // the render function is defined in the Planet component
       // and takes care of rotating the planet
       if (markerRootA.visible) {
-        trump.render();
+        earth.render();
       }
 
       if (arToolkitSource.ready !== false) {
