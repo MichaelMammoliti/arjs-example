@@ -1,7 +1,7 @@
 import './styles.css';
 
 // load your example
-// import './examples/ar-js-marker-single-planet';
+import './examples/ar-js-marker-single-planet';
 // import './examples/ar-js-marker-single-mesh-ui';
 // import './examples/ar-js-marker-planets';
 // import './examples/ar-js-marker-multi-planet';
