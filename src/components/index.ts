@@ -2,6 +2,7 @@
 import * as THREE from 'three';
 import { ButtonProps, PlanetProps, ProductPanelProps } from './types';
 import { GLTFhandler, loadGLTF } from '../utilities';
+import { GLTF } from 'three-stdlib';
 
 // export const Text = (props: ThreeMeshUI.TextOptions) => {
 //   return new ThreeMeshUI.Text({
@@ -162,10 +163,14 @@ export const BasicMesh = (
 export const Planet = ({ size, texture }: PlanetProps) => {
   const meshObject = BasicMesh({ map: texture }, [size, 32, 32]);
 
+  meshObject.mesh.scale.x = 0.3;
+  meshObject.mesh.scale.y = 0.3;
+  meshObject.mesh.scale.z = 0.3;
+
   const animate = () => {
-    meshObject.mesh.rotation.y += 0.05;
-    meshObject.mesh.position.x = Math.cos(window.totalTime) * 1;
-    meshObject.mesh.position.z = 1 + Math.sin(window.totalTime) * 1;
+    meshObject.mesh.rotation.y += 0.005;
+    // meshObject.mesh.position.x = Math.sin(window.totalTime) * 0.2;
+    // meshObject.mesh.position.z = 0.5 + Math.cos(window.totalTime) * -0.5;
   };
 
   meshObject.add(animate);
@@ -174,41 +179,56 @@ export const Planet = ({ size, texture }: PlanetProps) => {
 };
 
 export const Model = (path: string) => {
-  let model: any = undefined;
+  let model: GLTF = undefined;
   let loaded = false;
-  let actions: Function[] = [];
+  let loading = false;
+  let actions: ((model: GLTF) => void)[] = [];
+  let modelHandler: ReturnType<typeof GLTFhandler>;
+  let onLoadCb: (model: GLTF) => void;
 
   const load = async () => {
+    loading = true;
     model = await loadGLTF(path);
+    modelHandler = GLTFhandler(model);
     loaded = true;
+
+    onLoadCb?.(model);
+
+    return model;
   };
 
   const render = () => {
-    if (!loaded) {
-      return;
-    }
+    if (!loaded) return;
 
     actions.forEach((action) => action(model));
 
-    const modelHandler = GLTFhandler(model);
+    modelHandler.update(window.deltaTime);
+  };
 
-    modelHandler.update(0);
+  const animate = (action: (model: GLTF) => void) => {
+    actions.push(action);
+  };
+
+  const onLoad = (action: (model: GLTF) => void) => {
+    onLoadCb = action;
   };
 
   return {
     model,
     load,
+    loaded,
+    loading,
+    onLoad,
     render,
-    push: (action: Function) => actions.push(action),
+    animate,
   };
 };
 
 export const Trump = () => {
   const modelObject = Model('public/models/trump/scene.gltf');
-  const model = modelObject.model;
 
-  modelObject.push(() => {
-    const scene = model.scene as THREE.Scene;
+  modelObject.animate((model) => {
+    const scene = model.scene;
 
     scene.scale.set(0.01, 0.01, 0.01);
     scene.rotation.x = -Math.PI / 2;

@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
 import { CSSProperties } from 'react';
-import { GLTFLoader } from 'three/examples/js/loaders/GLTFLoader.js';
 import { planetDetails } from './constants';
 import { PlanetProps } from '../components/types';
+import { GLTF, GLTFLoader } from 'three-stdlib';
 
 export const between = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
@@ -42,13 +42,13 @@ export const createVideo = async () => {
   document.body.appendChild(video);
 };
 
-export const loadGLTF = (path: string) => {
+export const loadGLTF = (path: string): Promise<GLTF> => {
   return new Promise((resolve, reject) => {
     const instance = new GLTFLoader();
 
     instance.load(
       path,
-      (gltf: any) => {
+      (gltf: GLTF) => {
         resolve(gltf);
       },
       (xhr: any) => {},

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Squirtle
+* source:	https://sketchfab.com/3d-models/squirtle-eaa510ccbeb8465a8c0ae5a08cd085d3
+* author:	Bertrand Ciesielski (https://sketchfab.com/demoniumkoreon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Squirtle" (https://sketchfab.com/3d-models/squirtle-eaa510ccbeb8465a8c0ae5a08cd085d3) by Bertrand Ciesielski (https://sketchfab.com/demoniumkoreon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Happy Charmander
+* source:	https://sketchfab.com/3d-models/happy-charmander-eb3174f377a144f3bbb4a5f7bff869c5
+* author:	Kapao (https://sketchfab.com/supachailllpay)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Happy Charmander" (https://sketchfab.com/3d-models/happy-charmander-eb3174f377a144f3bbb4a5f7bff869c5) by Kapao (https://sketchfab.com/supachailllpay) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
